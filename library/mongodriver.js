@@ -329,7 +329,7 @@ mongodriver.prototype.addtoarray = function(cat, vals,array, callback)
 {var obj1 =this;
    var res = {};
   res.success=true;
-
+ 
   this.MongoClient.connect(this.connectionString, function(err, db)
   {
     if(err)
@@ -783,11 +783,27 @@ mongodriver.prototype.streamt=function(fileid)
 
 mongodriver.prototype.getfromgrid = function(fileid, callback)
 {
-  var Grid = require('mongodb').Grid;
-   var grid = new Grid(db, 'fs');
+ var Grid = require('mongodb').GridStore;
+ var ObjectId = require('mongodb').ObjectID;
+  this.MongoClient.connect(this.connectionString, function(err, db)
+  {
+   if(err)
+   {
+       simple.global.logerror(err);
+       console.log(err);
+   }
+   else{
+   
+   var grid = new Grid(db, new ObjectId(fileid),'r');
+    grid.open(function(err,gs)
+    {
+       gs.read(function(err, data) {
+       
+     callback(data);
     
-    grid.get(fileid, function(err, data) {
-     callback(decodeURI(data));
+  });
+    });
+   }
   });
 }
 
@@ -963,9 +979,12 @@ mongodriver.prototype.findAndSort = function(cond,flds,sort,coll,callback)
             }
           
           if(count >0){
+           // if(coll)
+            //  (collection.find(cond,flds).sort(sort)).toArray(err, function(dd){console.log(dd);}); 
+             
             
              var cursor = collection.find(cond,flds).sort(sort);  
-             console.log(sort);
+             
              var retcount = count;
              obj.traverseCursor(cursor,db, callback,retcount,coll);
              
@@ -1074,9 +1093,61 @@ mongodriver.prototype.sortAndLimit = function(cond,flds,sort,limit,coll,callback
   
      
         
-       
+            // if(coll)
+             // (collection.find(cond,flds).sort(sort)).toArray(err, function(dd){console.log(dd);}); 
             
              var cursor = collection.find(cond,flds).sort(sort).limit(limit);  
+             
+             var retcount = limit;
+             
+             
+             obj.traverseCursor(cursor,db, callback,retcount,coll);
+             
+             
+       /* collection.find(cond,flds,opt).count(function(err,count){ 
+          if(count >0){
+            
+            var cursor = collection.find(cond,flds,opt);  obj.traverseCursor(cursor,db, callback,count,coll);
+            }
+             else 
+             { 
+               callback({});
+              }
+         });*/
+     
+  }
+  }
+  );
+ 
+  
+}
+
+mongodriver.prototype.sortLimitSkip = function(cond,flds,sort,limit,skip,coll,callback)
+{
+  
+  
+  var obj = this;
+  
+  this.MongoClient.connect(this.connectionString, function(err, db)
+  {
+   if(err)
+   {
+       simple.global.logerror(err);
+       console.log(err);
+   }
+   else
+   { 
+   // console.log(opt);
+  
+    if(flds===null)
+     flds={};
+    var collection = db.collection(obj.modelname);
+  
+     
+        
+       
+            
+             var cursor = collection.find(cond,flds).sort(sort).skip(skip).limit(limit);  
              
              var retcount = limit;
              
@@ -1225,45 +1296,45 @@ mongodriver.prototype.traverseCursor =function(cursor,db, callback,count,coll)
   }
   else{
     
-	 cursor.each(function(err, doc) {
-     
-      obj.assert.equal(err, null);
-	  if(doc!==null)
-	  {
-       
-       itter++;
+
        if(coll === true)
        {
         
-         
-         tmparr.push(doc); 
-         //console.log(tmparr);
-         if(itter == count)
-         {
-            db.close();  
-            //console.log(tmparr);
-            callback(tmparr);
-           
-         }
+         cursor.toArray(function(err,dc){
+             if(err !== null)
+              {
+                  
+              }
+             callback(dc);
+            });
+        
        
        }
        else
        {
-       
-        callback(doc,count,itter);
+       cursor.each(function(err, doc) {
+          obj.assert.equal(err, null);
+          if(doc!==null)
+	      {
+          
+          itter++;
+           callback(doc,count,itter);
+          }
+         }
+  
+	     );
+          if(itter == count)
+            db.close();
        }
     // 
 		 
 	  }
-	 }
-  
-	 );
+	
   }
-   if(itter == count)
-      db.close();
+  
     //console.log('door');
      
- }
+ //}
  
  
 mongodriver.prototype.adsearch=function(needle, flds, opts, callback)
@@ -1508,7 +1579,10 @@ mongodriver.prototype.generateNextSequence = function(lookup, callback)
          try{
            if(err)
             console.log(err);
-           callback(object.value.seq);
+            else
+             {
+              callback(object.value.seq);
+             }
          }
          catch(error)
          {
