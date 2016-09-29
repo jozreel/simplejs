@@ -54,7 +54,7 @@ simplecontroler.prototype.loadview = function(vw,customlayout)
 		return this.load.view(vw,this.viewholder,this.res,this.req,false,true,customlayout);
 	
 	
-}
+} 
 
 simplecontroler.prototype.loadviewpart = function(view)
 {
