@@ -48,8 +48,9 @@ simplecontroler.prototype.loadview = function(vw,customlayout)
 	    for(var i= 0; i< Object.keys(vh).length; i++)
         {
           var key = Object.keys(vh)[i];
-          this.viewholder[key] = urlencode.addspecial(this.viewholder[key]);
-        }
+           if(typeof this.viewholder[key] === 'string' )
+             this.viewholder[key] = urlencode.addspecial(this.viewholder[key]);  
+         }
        
 		return this.load.view(vw,this.viewholder,this.res,this.req,false,true,customlayout);
 	
