@@ -37,7 +37,7 @@ simplecontroler.prototype.create= function(resp,req)
 simplecontroler.prototype.writeres= function(txt)
 {
 	//console.log(this.req);
- this.res.write(txt);
+ this.res.write(txt); 
 }
 simplecontroler.prototype.loadview = function(vw,customlayout)
 {
