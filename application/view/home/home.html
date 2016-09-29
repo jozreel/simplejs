@@ -1,1 +1,70 @@
-<h1>Hello World!</h1>
+
+<div id="hm">
+<div class="top">
+    <div>
+        <h4>Simple.js a simple Node js web development framework</h4>
+        <p class="snip">Build node apps following MVC arquitechture. Limit the number of languages you have to use in your web app.
+            Create your app using nodejs and mongodb on the backend and save and get data by making simple api calls
+        </p>
+        <img class="cimage" src="/images/tools.jpg" alt="learn from docs" />
+    </div>
+    <div>
+        <h4>Learn more from our documentation</h4>
+        
+        <p class="snip">
+            <span style="color:red; font-size:18pt;">coming soon !</span>
+            <br />
+            Not much to learn. Easy to use and shortens your developement process
+           Visit our <a href="#">Documentation</a> page an  become a simple.js master. Eg. Learn to save data and perform other database queries quickly by loading a model in your controller.
+         <br /><br /><span class="code">"var userModel = this.loadmodel('user')<br />
+          userModel.save(); "
+        </span>
+        </p>
+        
+        <img class="cimage" src="/images/learn.jpg"  alt="learn from docs" />
+        
+     </div>
+    <div>
+        
+            <h4>Support</h4>
+            <p class="snip">Contact support: Get simple.js up and running and deal with any issues that may keep you from going live</a></p>
+            <img class="cimage" src="/images/support.jpg" alt="learn from docs" />
+       
+            
+      </div> 
+   </div>
+  <p> <button class="plain" onclick="sj.getFile()">
+       Download simple.js
+   </button>
+  </p>
+  <p id="para">{{txt}}</p>
+  </div>
+  <div class="fbform trans-height, trans-opacity">
+     <form id="feedbackform">
+         
+         <p>
+           Email</label>
+         </p>
+          <p>
+         <input maxlength="150" type="email"  name="email" placeholder="jbrown@foomail.com"/>
+         </p>
+         <p>Feedback: max (200)</p> 
+         <p>
+         <textarea maxlength="200"  name="feedback" cols="50" rows="10"></textarea>
+         </p>
+         <p>
+          <div class="g-recaptcha" data-sitekey="6Ld7pAcUAAAAAFeeK1cu9SAguuRpwIX4HVcOV8x9"></div>
+         <button id="fbt"> Submit</button>
+         <button id="clbt"> close</button>
+         </p>
+     </form>
+   </div>
+
+   <script type="text/javascript">
+   class spjs{
+       getFile(){
+           window.location = '/home/downloadsimple';
+       }
+   }
+   var sj = new spjs();
+   </script>

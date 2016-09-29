@@ -1,6 +1,7 @@
 
 var path = require('path');
 var ROOT = path.resolve(__dirname).slice(0,-7) ;
+exports.root = ROOT;
 exports.viewpath = path.normalize(ROOT+'/application/view/');
 exports.controlerpath = path.normalize(ROOT+'/application/controller/');
 exports.publicpath = path.normalize(ROOT+'/public');
@@ -18,6 +19,6 @@ exports.logpath = ROOT+'/library/log';
 exports.viewlayout = "vlayout";
 exports.dbuser ='dbuser';
 exports.passwd = 'p8ssw0rd';
-exports.dbserver = '10.0.3.159';
+exports.dbserver = 'localhost';
 exports.dbport = '27017';
-exports.db = 'buzzme';
+exports.db = 'simplejs';

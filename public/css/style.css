@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'Lobster';
+
+  src: url('/fonts/Lobster/Lobster-Regular.ttf');
+  }
+ @font-face {
+  font-family: 'Roboto';
+
+  src: url('/fonts/Roboto/Roboto-Regular.ttf');
+  }
+  
+  
+@font-face {
+  font-family: 'Roboto-Thin';
+
+  src: url('/fonts/Roboto/Roboto-Thin.ttf');
+  }
+.fbform{border: 1px solid rgba(0, 0, 0, 0.1);  opacity: 0; height:0px; overflow: hidden; background: #f9fafc; padding: 20px;}
+.fbform button{background:  #E040FB; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.45); padding: 15px; color: white;}
+ .fbform form p input, textarea{width: 100%; border: 1px solid rgba(0 , 0, 0, 0.1);  padding: 15px;}
+.header{height: 60px; width: 100%; background: #1d686e;}
+
+body{margin: 0; padding: 0;  font-family: RobotoDraft, Roboto, sans-serif;}
+
+.code{font-size: 10pt; color:green;}
+.top{border-bottom: 1px solid rgba(0, 0, 0, 0.1) ; margin-bottom: 10px;}
+
+.top div p{color: rgba(0, 0, 0, 0.45);} 
+.top:last-child{margin-right: 0px;}
+.plain{background: #FAFAFA; color: rgba(0,0,0,0.45) ;border: 1px solid #FBE9E7; padding: 20px;}
+.footer{width:100%;  background: #f7ecf3;}
+.cimage{border-radius: 50%; width:200px; height: 200px; margin:auto; display: block;}
+.snip{height:250px;}
+.snip a{text-decoration: none;}
+
+.right a{ color: rgba(0, 128, 0, 0.45); padding:20px;}
+
+.trans-height{-webkit-transition: height 0.2s ease-in-out;
+-moz-transition: height 0.7s ease-in-out;
+transition: height 0.2s ease-in-out;}
+
+.trans-min-height{-webkit-transition: min-height 0.2s ease-in-out;
+-moz-transition: min-height 0.7s ease-in-out;
+transition: min-height 0.2s ease-in-out;}
+
+
+.trans-opacity{
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+.trans-width{-webkit-transition: width 0.2s ease-in-out;
+-moz-transition: width 0.2s ease-in-out;
+transition: width 0.2s ease-in-out;}
+ .dialog{background: rgba(0, 0, 0,0.3); pointer-events: none;}
+#toast{position: fixed;  bottom: 0px; left: 0px; height: 0px;  opacity: 0; min-width:200px; background: rgba(0 , 0, 0, 0.7); z-index: 10000; color: white; padding: 0px 20px 0px 20px; font-size: 10pt;}
+@media(max-width: 1024px)
+{
+    .header{position: fixed; top: 0px; z-index: 10000;}
+    .hcenter{ width: 100%; margin: auto;}
+    .maincontent{position: relative; clear: both; margin-top: 60px; overflow: auto;}
+    .content{padding: 10px; float: left; clear: both; width:100%;} 
+    .top div{box-shadow: 0px 1px 1px 0px #ccc; margin: 1px 1px 10px 1px; padding: 5px 5px 10px 5px;}
+    .footer{position: relative; height: 50px; width: 100%; padding :20px; height: 210px; }
+    .right{display: block; float: left; width:100%;}
+    .right a{display: block;}
+     .fbform{ border-radius: 3px; position: fixed; left: 0px; bottom: 0px; width: 100%;}
+     .fbform form p{margin: 5 auto; width: 100%;}
+     .fbform form textarea{height:100px;}
+    
+    
+}
+@media (min-width:1025px){
+    .right{display: block; float: right; width:550px;}
+    .content{width: 1300px; margin: 0 auto; padding: 20px;height: auto;}
+    .hcenter{ width: 1300px; margin: auto;}
+    .maincontent{overflow: auto; height: calc(100% - 260px);}
+    .top{height: 600px;}
+    .top div{width:380px; margin-right:20px; display: inline-block; vertical-align: top;}
+    .footer{position: relative; clear: both;  bottom: 0px; padding-top: 20px; height: 200px;}
+    .footer a{text-decoration: none;}
+    .footer a:hover{text-decoration: underline;}
+    .fbform{ border-radius: 3px; position: absolute; right: 10px; bottom: 200px;}
+    .fbform form p{margin: 5 auto; width:400px;}
+   
+    .fbform form textarea{width:400px;}
+    
+    
+}
+
+

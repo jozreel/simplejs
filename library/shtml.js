@@ -235,7 +235,7 @@ shtml.prototype.baseurl= function(str)
 shtml.prototype.addlink = function(str)
 {
 	
-	return this.parseother(str, /\$link\(([-A-Z0-9+&@#\/%?=~_|!:,.;]*[A-Z0-9+&@#\/%=~_|])\);/g, function(y){ return 'link rel="import" href="'+y+'"'; console.log(y);});
+	return this.parseother(str, /\$link\(([-A-Z0-9+&@#\/%?=~_|!:,.;]*[A-Z0-9+&@#\/%=~_|])\);/g, function(y){ return 'link rel="import" href="'+y+'"'; });
 }
 shtml.prototype.updatepageheader = function(str)
 {

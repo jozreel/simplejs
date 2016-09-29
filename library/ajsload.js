@@ -61,7 +61,9 @@ ajsloadable.prototype.view=function(view, args, resp,req,cache,replacespecial,cu
 			
 			if(replacespecial ===true)
 			 if(resp.urlencode !== undefined)
-			     ui = resp.urlencode.addspecial(ui);
+             {
+			    // ui = resp.urlencode.addspecial(ui);
+             }
 			  ui =  obj.insertContent(vals,ui,customui)	
 			  ui=shtml.updatepageheader(ui);
 			 obj.output(resp,ui,path);
@@ -99,7 +101,7 @@ ajsloadable.prototype.view=function(view, args, resp,req,cache,replacespecial,cu
 			 if(resp.urlencode !== undefined)
 			 {
 				 
-			     ui = resp.urlencode.addspecial(ui);
+			     //ui = resp.urlencode.addspecial(ui);
 				
 			 }
 			}
@@ -234,10 +236,11 @@ ajsloadable.prototype.zoutput = function(resp,ui,fname)
 							console.log(err);
 						    resp.end({"error":err}); 
 						  }
-						 resp.writeHead(200, {
-							 'Content-Encoding': 'deflate'
-							  },{'Content-Type':'text/html'});
-							  resp.end(buffer);
+                        resp.statusCode = 200;
+						 resp.setHeader('Content-Encoding','deflate');
+                         resp.setHeader('Content-Type','text/html');
+						 resp.end(buffer);
+                              
 						 }
 						 catch(err)
 						 {
@@ -254,7 +257,9 @@ ajsloadable.prototype.zoutput = function(resp,ui,fname)
 						 }
 						 else
 						 {
-                         resp.writeHead(200, { 'content-encoding': 'gzip' },{'Content-Type':'text/html'});
+                         resp.statusCode = 200;
+                         resp.setHeader('Content-encoding', 'gzip');
+                         resp.setHeader('Content-Type','text/html');
 						  
 						  resp.end(buffer);
 						 }
@@ -323,12 +328,14 @@ ajsloadable.prototype.showLoadedViews = function(args,resp)
 	 }
 }
 
-
+ 
 
 ajsloadable.prototype.model = function(model)
 {
-	
+	var simple = require('simple');
+    var simplemod = new simple.simplemodel();
 	var mod = require('../application/model/'+model);
+    mod.__proto__ = simplemod;
 	//console.log(mod);
 	return mod;
 	

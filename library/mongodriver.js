@@ -955,6 +955,7 @@ mongodriver.prototype.findAndSort = function(cond,flds,sort,coll,callback)
   
   this.MongoClient.connect(this.connectionString, function(err, db)
   {
+ 
    if(err)
    {
        simple.global.logerror(err);
@@ -971,6 +972,7 @@ mongodriver.prototype.findAndSort = function(cond,flds,sort,coll,callback)
      
         
         collection.find(cond,flds).count(function(err,count){ 
+         
           if(err)
             {
              
@@ -984,7 +986,6 @@ mongodriver.prototype.findAndSort = function(cond,flds,sort,coll,callback)
              
             
              var cursor = collection.find(cond,flds).sort(sort);  
-             
              var retcount = count;
              obj.traverseCursor(cursor,db, callback,retcount,coll);
              
@@ -1287,6 +1288,7 @@ mongodriver.prototype.close = function()
 
 mongodriver.prototype.traverseCursor =function(cursor,db, callback,count,coll)
  {
+    
 	 var obj=this;
    var itter = 0;
   var tmparr = new Array();
@@ -1296,15 +1298,16 @@ mongodriver.prototype.traverseCursor =function(cursor,db, callback,count,coll)
   }
   else{
     
-
+       
        if(coll === true)
        {
         
          cursor.toArray(function(err,dc){
              if(err !== null)
               {
-                  
+                 simple.global.logerror(err);
               }
+              
              callback(dc);
             });
         
